@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
@@ -17,7 +18,7 @@ export default function RegistrationRequests() {
     try {
       const token = localStorage.getItem('admin_token');
       if (!token) throw new Error('Not authenticated');
-      const res = await fetch('http://localhost:5000/api/admin/registrations', {
+      const res = await fetch(`${API_BASE}/api/admin/registrations`, {
         headers: { Authorization: 'Bearer ' + token }
       });
       const data = await res.json();
@@ -46,7 +47,7 @@ export default function RegistrationRequests() {
   const handleAccept = async (regId) => {
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await fetch(`http://localhost:5000/api/admin/registrations/${regId}`, {
+      const res = await fetch(`${API_BASE}/api/admin/registrations/${regId}`, {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer ' + token,
@@ -69,7 +70,7 @@ export default function RegistrationRequests() {
   const handleReject = async (regId) => {
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await fetch(`http://localhost:5000/api/admin/registrations/${regId}`, {
+      const res = await fetch(`${API_BASE}/api/admin/registrations/${regId}`, {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer ' + token,
@@ -509,7 +510,7 @@ export default function RegistrationRequests() {
                     <p style={{margin: '0 0 12px', fontSize: '12px', fontWeight: 600, color: '#666'}}>DOCUMENTS</p>
                     <div style={{display: 'flex', gap: 12, flexWrap: 'wrap'}}>
                       {selectedDetails.files && selectedDetails.files.photo && (
-                        <a href={`http://localhost:5000/${selectedDetails.files.photo.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
+                        <a href={`${API_BASE}/${selectedDetails.files.photo.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
                           padding: '10px 16px',
                           background: '#E8F4FF',
                           color: '#0066CC',
@@ -522,7 +523,7 @@ export default function RegistrationRequests() {
                         }}>📷 Photo</a>
                       )}
                       {selectedDetails.files && selectedDetails.files.marksheet && (
-                        <a href={`http://localhost:5000/${selectedDetails.files.marksheet.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
+                        <a href={`${API_BASE}/${selectedDetails.files.marksheet.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
                           padding: '10px 16px',
                           background: '#E8F4FF',
                           color: '#0066CC',
@@ -535,7 +536,7 @@ export default function RegistrationRequests() {
                         }}>📄 Marksheet</a>
                       )}
                       {selectedDetails.files && selectedDetails.files.idProof && (
-                        <a href={`http://localhost:5000/${selectedDetails.files.idProof.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
+                        <a href={`${API_BASE}/${selectedDetails.files.idProof.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
                           padding: '10px 16px',
                           background: '#E8F4FF',
                           color: '#0066CC',
@@ -548,7 +549,7 @@ export default function RegistrationRequests() {
                         }}>🆔 ID Proof</a>
                       )}
                       {selectedDetails.files && selectedDetails.files.casteCertificate && (
-                        <a href={`http://localhost:5000/${selectedDetails.files.casteCertificate.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
+                        <a href={`${API_BASE}/${selectedDetails.files.casteCertificate.replace(/^\.\//, '')}`} target="_blank" rel="noreferrer" style={{
                           padding: '10px 16px',
                           background: '#E8F4FF',
                           color: '#0066CC',

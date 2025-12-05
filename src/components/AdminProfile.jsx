@@ -1,3 +1,4 @@
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
@@ -28,7 +29,7 @@ export default function AdminProfile() {
       const token = localStorage.getItem('admin_token');
       if (!token) throw new Error('Not authenticated');
       
-      const res = await fetch('http://localhost:5000/api/admin/profile', {
+      const res = await fetch(`${API_BASE}/api/admin/profile`, {
         headers: { Authorization: 'Bearer ' + token }
       });
       const data = await res.json();
@@ -80,7 +81,7 @@ export default function AdminProfile() {
     setLoading(true);
     try {
       const token = localStorage.getItem('admin_token');
-      const res = await fetch('http://localhost:5000/api/admin/profile', {
+      const res = await fetch(`${API_BASE}/api/admin/profile`, {
         method: 'PUT',
         headers: {
           'Authorization': 'Bearer ' + token,
