@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AdminLogin.css';
 
@@ -11,6 +11,25 @@ export default function AdminDashboard(){
     localStorage.removeItem('admin_email');
     navigate('/admin/login');
   };
+
+  useEffect(() => {
+    // Define an asynchronous function inside useEffect
+    const fetchData = async () => {
+    
+        const response = await fetch('https://jsonplaceholder.typicode.com/users'); // Replace with your API endpoint
+        console.log('Response status:', response);
+
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        //setData(result);
+      console.log('Fetched data:', result);
+    };
+
+    fetchData(result);
+  }, []); 
 
   return (
     <div style={{minHeight:'100vh'}}>
