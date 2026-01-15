@@ -1,4 +1,3 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Registration.css';
@@ -198,7 +197,7 @@ const Registration = () => {
 
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/api/register`, {
+      const res = await fetch('http://localhost:5000/api/register', {
         method: 'POST',
         body: fd
       });
